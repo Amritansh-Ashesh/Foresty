@@ -1,12 +1,9 @@
-from flask import Flask, render_template,redirect,url_for,flash,request
+from flask import Flask, render_template,redirect,url_for,flash
 from forms import PredictorForm
-import pickle
-import numpy as np
 import real_time_data as rtd
 import datetime
 
 app = Flask(__name__)
-model=pickle.load(open('model.pkl','rb'))
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SECRET_KEY'] = 'TOP_SECRET_PROJECT'
 
@@ -52,23 +49,6 @@ def predictor():
 
     return render_template('predictor.html', title='predictor', form = form)
 
-@app.route('/predict', methods=['POST', 'GET'])
-def predict():
-    int_features = [int(x) for x in request.form.values()]
-    final = [np.array(int_features)]
-    print(int_features)
-    print(final)
-    prediction = model.predict_proba(final)
-    output = '{0:.{1}f}'.format(prediction[0][1], 2)
-
-    if output > str(0.5):
-        return render_template('forest_fire.html',
-                               pred='Your Forest is in Danger.\nProbability of fire occuring is {}'.format(output))
-    else:
-        return render_template('forest_fire.html',
-                               pred='Your Forest is safe.\n Probability of fire occuring is {}'.format(output))
-
-
 @app.route('/prediction')
 def prediction():
     return render_template('prediction.html',title='prediction',status='',form_data=form_data)
@@ -77,10 +57,38 @@ def prediction():
 def forest_fire():
     return render_template('forest_fire.html',title='forest_fire',status='')
 
-
 @app.route('/services')
 def services():
     return render_template('services.html',title='services',status='')
+
+# News Links
+@app.route('/news-world-1')
+def news_world_1():
+    return render_template('world-1.html',title='World',status='')
+
+@app.route('/news-world-2')
+def news_world_2():
+    return render_template('world-2.html',title='World',status='')
+
+@app.route('/news-world-3')
+def news_world_3():
+    return render_template('world-3.html',title='World',status='')
+
+@app.route('/news-usa-1')
+def usa_1():
+    return render_template('usa-1.html',title='U.S',status='')
+
+@app.route('/news-usa-2')
+def usa_2():
+    return render_template('usa-2.html',title='U.S',status='')
+
+@app.route('/news-usa-3')
+def usa_3():
+    return render_template('usa-3.html',title='U.S',status='')
+
+@app.route('/signin')
+def sign_in():
+    return render_template('sign_in.html',title='',status='')
 
 if __name__ =='__main__':
     app.run(debug=True)

@@ -49,6 +49,23 @@ def predictor():
 
     return render_template('predictor.html', title='predictor', form = form)
 
+@app.route('/predict', methods=['POST', 'GET'])
+def predict():
+    int_features = [int(x) for x in request.form.values()]
+    final = [np.array(int_features)]
+    print(int_features)
+    print(final)
+    prediction = model.predict_proba(final)
+    output = '{0:.{1}f}'.format(prediction[0][1], 2)
+
+    if output > str(0.5):
+        return render_template('forest_fire.html',
+                               pred='Your Forest is in Danger.\nProbability of fire occuring is {}'.format(output))
+    else:
+        return render_template('forest_fire.html',
+                               pred='Your Forest is safe.\n Probability of fire occuring is {}'.format(output))
+
+
 @app.route('/prediction')
 def prediction():
     return render_template('prediction.html',title='prediction',status='',form_data=form_data)

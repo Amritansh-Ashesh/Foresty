@@ -1,7 +1,9 @@
-from flask import Flask, render_template,redirect,url_for,flash
+from flask import Flask, render_template,redirect,url_for,flash,request
 from forms import PredictorForm
 import real_time_data as rtd
 import datetime
+import pickle
+import numpy as np
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -10,12 +12,29 @@ app.config['SECRET_KEY'] = 'TOP_SECRET_PROJECT'
 form_data = {
     'Country': '',
     'Forest': '',
+    'Time':'',
+    'Summary':'',
+    'Icon':'',
+    'Precipintensity':'',
+    'Probability of Rain':'',
+    'Temperature':'',
+    'Apparent Temperature':'',
+    'Dew Point':'',
+    'Humidity':'',
+    'Pressure':'',
+    'Wind Speed':'',
+    'Wind Gust':'',
+    'Wind Bearing':'',
+    'Cloud Cover':'',
+    'UV Index':'',
+    'Visibility':'',
+    'Ozone':'',
 }
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html',title='',status='')
+    return render_template('home.html',title='',status='',user='Ted')
 
 @app.route('/about')
 def about():
@@ -38,6 +57,15 @@ def predictor():
                 form_data[key.capitalize()] = value
         except:
             print('ERROR: Could not find it!')
+
+        # Correct Keys
+        old_keys = ['Precipprobability', 'Apparenttemperature', 'Dewpoint', 'Windspeed', 'Windgust', 'Windbearing',
+                    'Cloudcover', 'Uvindex']
+        new_keys = ['Probability of Rain', 'Apparent Temperature', 'Dew Point', 'Wind Speed', 'Wind Gust',
+                    'Wind Bearing','Cloud Cover', 'UV Index']
+        for new_key, old_key in zip(new_keys, old_keys):
+            form_data[new_key] = form_data.pop(old_key)
+
 
         #Converting UNIX Timestamp to Datetime
         timestamp = datetime.datetime.fromtimestamp(form_data['Time'])
@@ -68,7 +96,7 @@ def predict():
 
 @app.route('/prediction')
 def prediction():
-    return render_template('prediction.html',title='prediction',status='',form_data=form_data)
+    return render_template('prediction.html',title='Prediction',status='',form_data=form_data)
 
 @app.route('/forest_fire')
 def forest_fire():
@@ -76,7 +104,7 @@ def forest_fire():
 
 @app.route('/services')
 def services():
-    return render_template('services.html',title='services',status='')
+    return render_template('services.html',title='Services',status='')
 
 # News Links
 @app.route('/news-world-1')
@@ -103,9 +131,15 @@ def usa_2():
 def usa_3():
     return render_template('usa-3.html',title='U.S',status='')
 
-@app.route('/signin')
-def sign_in():
-    return render_template('sign_in.html',title='',status='')
+@app.route('/measures')
+def measures():
+    return render_template('measures_g.html',title='hmmm?',forest=form_data['Forest'])
+
+@app.route('/measures_b')
+def measures_b():
+    # return render_template('measures_b.html',title='hmm?',forest=form_data['Forest'])
+    return render_template('measures_b.html',title='hmm?',forest='Jim Corbett')
+
 
 if __name__ =='__main__':
     app.run(debug=True)

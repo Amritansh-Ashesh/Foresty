@@ -2,89 +2,106 @@
 
 {% block metatags %}
 {% endblock metatags %}
+
 {% block content %}
 <div class="how-section1 bg-dark white" style="padding-top: 15rem">
 {#    #}
-    <div class="row">
-        <div class="col-md-12">
-          <h4>  <button onclick="myFunction();this.onclick=null;">Probability of forest fire in {{forest}} is</button></h4>
-            <p id="demo"></p>
-            <script>
-            function myFunction() {
-              document.getElementById("demo").innerHTML = Math.random();
-            }
-            </script>
-            <!--p class="msubhead">According to various factors the chances of a Forest Fire in {{forest}} is moderate<span style="color: #b9151b"></span></p-->
-        <p class="text">We recommend you contact to authorities immediately and find the current status of this event. Meanwhile,here are some measures we request you to take for you and your family's safety.</p>
-        </div>
+<div class="row">
+    <div class="col-md-12">
+      <h4>Probability of forest fire in <i>{{forest}}</i></h4>
+        <p class="msubhead">According to our collected data, the chances of a Forest Fire in {{forest}} is <span style="color: #3bb934">{{data}}</span> or very unlikely.</p>
+        <p class="text">Nonetheless, Here are some measures you can ask your local authorities to take to prevent something like this happening near you.</p>
+    </div>
 {#    #}
-    <div class="row">
-        <div class="col-md-6 how-img">
-            <img src="https://img.icons8.com/fluent/500/000000/ambulance.png"/>
-        </div>
-        <div class="col-md-6">
-            <h4>How to prevent a wildfire</h4>
-            <p class="msubhead">Contact 911, your local fire department, or the park service if you notice an unattended or out-of-control fire.</p>
-        <p class="text">
-        <ul>
-            <li>Always take care when using and fueling lanterns, stoves, and heaters. Make sure lighting and heating devices are cool before refueling. Avoid spilling flammable liquids and store fuel away from appliances.</li>
-            <li>Never leave a fire unattended. Completely extinguish the fire—by dousing it with water and stirring the ashes until cold—before sleeping or leaving the campsite.</li>
-            <li>Do not discard cigarettes, matches, and smoking materials from moving vehicles, or anywhere on park grounds. Be certain to completely extinguish cigarettes before disposing of them.</li>
-            <li>Follow local ordinances when burning yard waste. Avoid backyard burning in windy conditions, and keep a shovel, water, and fire retardant nearby to keep fires in check. Remove all flammables from the yard when burning.</li>
-        </ul>
-           </p>
-        </div>
+
+<div class="row">
+    <div class="col-md-6 how-img">
+        <img src="https://img.icons8.com/cute-clipart/500/000000/rainwater-catchment.png"/>
+    </div>
+    <div class="col-md-6">
+        <h4>Fire fighting reservoirs </h4>
+                    <p class="msubhead">Build and maintain, a fire fighting water supply system within suitable water courses or to create
+        artificial reservoirs for water extraction</p>
+    <p class="text">Water is still the main way to extinguish forest fires. Therefore in large, contiguous and fire endangered forested areas
+        it is necessary to have, or build and maintain, a fire fighting water supply system within suitable water courses or to create
+        artificial reservoirs for water extraction. When creating new reservoirs an agreement is needed between the forest owners,
+        forest authorities and the fire service. It is important that these extraction points are sufficiently identified and easily accessible by fire engine.</p>
+    </div>
 {#            <img src="https://www.waldwissen.net/assets/_processed_/d/3/csm_fva_waldbrand_wb4_2_teich_c450c090a0.jpeg" width="500px" height=auto>#}
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h4>Infrastructure</h4>
+                    <p class="msubhead">Forest infrastructure should be agreed with the forest authorities,
+                        owners and fire service.</p>
+                    <p class="text">In order for fire engines to reach a forest stand it is important that the roads can bear heavy vehicles.
+                        Similarly turning and passing bays and sufficient clearance must be maintained or created. Also as
+                        with the creation of water reservoirs, this forest infrastructure should be agreed with the forest authorities,
+                        owners and fire service.</p>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Evacuation tips</h4>
-                        <p class="msubhead">Seek your nearest evacuation camp</p>
-                        <p class="text">
-                            <ul>
-                                <li>If advised to evacuate, do so immediately.</li>
-                                <li>Know your evacuation route ahead of time and prepare an evacuation checklist and emergency supplies.</li>
-                                <li>Wear protective clothing and footwear to reduce harm from flying sparks and ashes.</li>
-                            </ul>
-                        </p>
-        </div>
-        <div class="col-md-6 how-img">
-            <img src="https://img.icons8.com/fluent/500/000000/high-risk.png"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 how-img">
-             <img src="https://img.icons8.com/fluent/500/000000/warehouse-1.png"/>
-        </div>
-        <div class="col-md-6">
-            <h4>Before you leave, prepare your home</h4>
-                        <p class="msubhead">Follow these safety measures</p>
-                        <p class="text">
-                            <ul>
-                                <li>Remove combustibles, including firewood, yard waste, barbecue grills, and fuel cans, from your yard.</li>
-                                <li>Close all windows, vents, and doors to prevent a draft.</li>
-                                <li>Shut off natural gas, propane, or fuel oil supplies.</li>
-                                <li>Fill any large vessels—pools, hot tubs, garbage cans, or tubs—with water to slow or discourage fire.</li>
-                            </ul>
-                        </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>If caught in a wildfire</h4>
-                        <p class="msubhead">The early detection and location of forest fires,
-                            this aerial support can also be helpful in directing the operational forces on the ground.</p>
-                        <p class="text">
-                            <ul>
-                                <li>Don't try to outrun the blaze. Instead, look for a body of water such as a pond or river to crouch <in class=""></in></li>
-                                <li>If there is no water nearby, find a depressed, cleared area with little vegetation, lie low to the ground, and cover your body with wet clothing, a blanket, or soil. Stay low and covered until the fire passes.</li>
-                                <li>Protect your lungs by breathing air closest to the ground, through a mask or moist cloth, if possible, to reduce smoke inhalation.</li>
-                            </ul>
-                        </p>
-        </div>
-        <div class="col-md-6 how-img">
-            <img src="https://img.icons8.com/fluent/240/000000/campfire.png"/>
-        </div>
+    <div class="col-md-6 how-img">
+        <img src="https://img.icons8.com/cute-clipart/500/000000/fire-extinguisher.png"/>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-6 how-img">
+         <img src="https://img.icons8.com/cute-clipart/500/000000/bullet-camera.png"/>
+    </div>
+    <div class="col-md-6">
+        <h4>Forest Fire Monitoring</h4>
+                    <p class="msubhead">Need for various modern monitoring system</p>
+                    <p class="text">Since the introduction of automatic, camera supported forest fire observation systems,
+                        the number of forest fires has not reduced but their extent has. The early and exact identification of forest fires and a
+                        fast notification has ensured that the technical team can be on-site quickly and can quickly begin to fight the fire.
+                        An optical sensor system used for the early detection and monitoring of forest fires.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h4>Aerial Surveillance </h4>
+                    <p class="msubhead">The early detection and location of forest fires,
+                        this aerial support can also be helpful in directing the operational forces on the ground.</p>
+                    <p class="text">Aerial surveillance flights are a possible means to detect forest fires at an early stage
+                        during times of high fire risk. Along with regulatory authority surveillance flights (e.g. fire service air service in Lower
+                        Saxony), commercial airlines or private amateur pilots can be used to fly pre-determined routes. This form of collaboration
+                        is practiced in Saxony, Bavaria and Brandenburg. In Rhineland-Palatine when the danger level is above level 4, all airports
+                        are contacted and pilots are asked to help with early detection. Besides the early detection and location of forest fires,
+                        this aerial support can also be helpful in directing the operational forces on the ground.</p>
+    </div>
+    <div class="col-md-6 how-img">
+        <img src="https://img.icons8.com/cute-clipart/500/000000/dual-helicopter.png"/>
+    </div>
+</div>
+{#    neww#}
+<div class="row">
+    <div class="col-md-6 how-img">
+         <img src="https://img.icons8.com/cute-clipart/500/000000/gps-receiving.png"/>
+    </div>
+    <div class="col-md-6">
+        <h4>Communication equipment</h4>
+                    <p class="msubhead">Test that forest fire
+                        fighting maps, telephone, mobile and address lists as well as response plans are up-to-date.</p>
+                    <p class="text"> Forest fires can only be quickly and successfully fought with functioning communication between the fire service and forest authority operational teams. Mobile telephones and radios are required. Up-to-date telephone lists are also needed.
+
+Annual checks are carried out before the start of the fire season in Mecklenburg-Western Pomerania to test that forest fire
+                        fighting maps, telephone, mobile and address lists as well as response plans are up-to-date.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h4>Emergency and deployment plans, Control of operations </h4>
+                    <p class="msubhead">Before the outbreak of a fire, emergency and deployment plans have to be created.</p>
+                    <p class="text">In addition to updating plans, in the run up to a fire, suitable premises for an operational headquarters c
+                        an be identified if a command vehicle will not be used as the control centre. Besides technical equipment (computers, printers),
+                        these premises should also be equipped with sufficient communication means (emergency services radio, mobile telephones, landlines,
+                        receivers). A good road connection and a helicopter landing site is also required. As the press and media representatives have to also
+                        be reckoned with during a fire, a separate room should be made available for them to work in if the fire will last for some time.</p>
+    </div>
+    <div class="col-md-6 how-img">
+        <img src="https://img.icons8.com/cute-clipart/500/000000/explosion.png"/>
+    </div>
+</div>
+
+</div>
 {% endblock content %}
+

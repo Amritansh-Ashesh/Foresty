@@ -1,11 +1,12 @@
 from flask import Flask, render_template,redirect,url_for,flash,request
 from forms import PredictorForm
+import pickle
 import real_time_data as rtd
 import datetime
-import pickle
 import numpy as np
 
 app = Flask(__name__)
+model=pickle.load(open('model.pkl','rb'))
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['SECRET_KEY'] = 'TOP_SECRET_PROJECT'
 
@@ -31,6 +32,7 @@ form_data = {
     'Ozone':'',
 }
 
+# Routing
 @app.route('/')
 @app.route('/home')
 def home():
@@ -77,30 +79,9 @@ def predictor():
 
     return render_template('predictor.html', title='predictor', form = form)
 
-@app.route('/predict', methods=['POST', 'GET'])
-def predict():
-    int_features = [int(x) for x in request.form.values()]
-    final = [np.array(int_features)]
-    print(int_features)
-    print(final)
-    prediction = model.predict_proba(final)
-    output = '{0:.{1}f}'.format(prediction[0][1], 2)
-
-    if output > str(0.5):
-        return render_template('forest_fire.html',
-                               pred='Your Forest is in Danger.\nProbability of fire occuring is {}'.format(output))
-    else:
-        return render_template('forest_fire.html',
-                               pred='Your Forest is safe.\n Probability of fire occuring is {}'.format(output))
-
-
 @app.route('/prediction')
 def prediction():
     return render_template('prediction.html',title='Prediction',status='',form_data=form_data)
-
-@app.route('/forest_fire')
-def forest_fire():
-    return render_template('forest_fire.html',title='forest_fire',status='')
 
 @app.route('/services')
 def services():
@@ -131,15 +112,30 @@ def usa_2():
 def usa_3():
     return render_template('usa-3.html',title='U.S',status='')
 
-@app.route('/measures')
+@app.route('/measures', methods=['POST', 'GET'])
 def measures():
-    return render_template('measures_g.html',title='hmmm?',forest=form_data['Forest'])
+    int_features = [int(x) for x in [form_data['Temperature'],form_data['Humidity'],form_data['Ozone']]]
+    if int_features[1] <= 50:
+        int_features[1] = 50
+    int_features[2] = int_features[2]/5
+    final = [np.array(int_features)]
+
+    prediction = model.predict_proba(final)
+    output = '{0:.{1}f}'.format(prediction[0][1], 5)
+    output = float(output)
+    if output > 0.50:
+        output /= 4
+    elif output > 0.25 and output < 0.5:
+        output /= 2
+#   Checks if probability is greater than our calculated threshold
+    if output>0.9:
+        return render_template('measures_b.html', title='hmmm?', forest=form_data['Forest'], data=round(output,3))
+    else:
+        return render_template('measures_g.html',title='hmmm?',forest=form_data['Forest'],data=round(output,3))
 
 @app.route('/measures_b')
 def measures_b():
-    # return render_template('measures_b.html',title='hmm?',forest=form_data['Forest'])
     return render_template('measures_b.html',title='hmm?',forest='Jim Corbett')
-
 
 if __name__ =='__main__':
     app.run(debug=True)

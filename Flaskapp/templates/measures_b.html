@@ -8,8 +8,14 @@
 {#    #}
     <div class="row">
         <div class="col-md-12">
-            <h4>Probability of Forest Fire in {{forest}}</h4>
-            <p class="msubhead">According to us the chances of a Forest Fire in {{forest}} is <span style="color: #b9151b">Medium to High!</span></p>
+            <h4>  <button onclick="myFunction();this.onclick=null;">Probability of forest fire in {{forest}} is</button></h4>
+              <p id="demo"></p>
+              <script>
+              function myFunction() {
+                document.getElementById("demo").innerHTML = Math.random();
+              }
+             </script>
+            <!--p class="msubhead">According to us the chances of a Forest Fire in {{forest}} is <span style="color: #b9151b">Medium to High!</span></p-->
         <p class="text">We recommend you contact to authorities immediately and find the current status of this event. Meanwhile,here are some measures we request you to take for you and your family's safety.</p>
         </div>
 {#    #}
